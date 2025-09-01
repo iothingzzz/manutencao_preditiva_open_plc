@@ -1,0 +1,108 @@
+============================================================
+DOCUMENTAÇÃO DO PROJETO: MANUTENÇÃO PREDITIVA COM ESP32 + OPENPLC + MODBUS TCP + MERN
+============================================================
+
+📌 OBJETIVO
+Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: data centers), monitorando temperatura via sensor DHT11 conectado ao ESP32 com OpenPLC. O backend Node.js coleta dados via Modbus TCP, aplica lógica de alerta e disponibiliza uma API REST para visualização e análise.
+
+------------------------------------------------------------
+🔧 COMPONENTES DO SISTEMA
+------------------------------------------------------------
+
+1. HARDWARE
+- ESP32 Dev Kit
+- Sensor DHT11 (temperatura e umidade)
+- Conexão Wi-Fi
+
+2. SOFTWARE
+- OpenPLC rodando no ESP32
+- Backend Node.js + Express
+- MongoDB para armazenamento
+- React (frontend opcional)
+- Protocolo Modbus TCP
+
+------------------------------------------------------------
+🧱 ARQUITETURA DE PASTAS DO BACKEND
+------------------------------------------------------------
+
+manutencao-preditiva-backend/
+├── server.js               # Ponto de entrada do servidor
+├── .env                    # Variáveis de ambiente
+├── config/
+│   └── db.js               # Conexão com MongoDB
+├── modbus/
+│   └── client.js           # Cliente Modbus TCP
+│   └── poller.js           # Leitura periódica dos registradores
+├── models/
+│   └── SensorData.js       # Modelo de dados do sensor
+│   └── Alert.js            # Modelo de alertas
+├── controllers/
+│   └── sensorController.js # Lógica de negócio
+│   └── alertController.js  # Lógica de alertas
+├── routes/
+│   └── sensorRoutes.js     # Endpoints da API
+│   └── alertRoutes.js      # Endpoints de alertas
+├── utils/
+│   └── thresholds.js       # Limiares configuráveis
+│   └── logger.js           # Logs customizados
+
+------------------------------------------------------------
+🪜 PROGRAMA LADDER (OPENPLC)
+------------------------------------------------------------
+
+Objetivo: Acionar alarme se temperatura > 30 °C
+
+Registradores:
+- %IW0 → Temperatura (ex: 305 = 30.5 °C)
+- %QX0.0 → Saída digital para alarme
+
+Lógica Ladder:
+|----[ %IW0 > 300 ]----( %QX0.0 )----|
+
+------------------------------------------------------------
+📡 COMUNICAÇÃO MODBUS TCP
+------------------------------------------------------------
+
+- ESP32 atua como escravo Modbus TCP
+- Backend atua como mestre, lendo registradores via `modbus-serial`
+- Intervalo de leitura configurável (ex: a cada 10 segundos)
+
+------------------------------------------------------------
+🧠 LÓGICA DE ALERTA
+------------------------------------------------------------
+
+- Se temperatura > limite (ex: 30 °C), gerar alerta
+- Salvar leitura e alerta no MongoDB
+- Expor via API REST para frontend ou sistemas externos
+
+------------------------------------------------------------
+🔐 VARIÁVEIS DE AMBIENTE (.env)
+------------------------------------------------------------
+
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/manutencao
+MODBUS_HOST=192.168.0.100
+MODBUS_PORT=502
+TEMP_LIMIT=30
+
+------------------------------------------------------------
+📊 ENDPOINTS DA API
+------------------------------------------------------------
+
+GET /api/sensors/latest       → Última leitura
+GET /api/alerts               → Histórico de alertas
+POST /api/config              → Atualizar limites
+GET /api/status               → Estado atual do sistema
+
+------------------------------------------------------------
+📌 APLICAÇÕES REAIS
+------------------------------------------------------------
+
+- Monitoramento ambiental em data centers
+- Prevenção de falhas térmicas em quadros elétricos
+- Controle de temperatura em salas técnicas e telecom
+- Registro histórico para auditoria e análise preditiva
+
+============================================================
+FIM DA DOCUMENTAÇÃO
+============================================================
