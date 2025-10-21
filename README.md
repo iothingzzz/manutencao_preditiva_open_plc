@@ -3,7 +3,7 @@ MANUTENÇÃO PREDITIVA COM ESP32 + OPENPLC + MODBUS TCP + MERN
 ============================================================
 
 📌 OBJETIVO
-Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: data centers), monitorando temperatura via sensor DHT11 conectado ao ESP32 com OpenPLC. O backend Node.js coleta dados via Modbus TCP, aplica lógica de alerta e disponibiliza uma API REST para visualização e análise.
+Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: data centers), monitorando temperatura via sensor LM35 conectado ao ESP32 com OpenPLC. O backend Node.js coleta dados via Modbus TCP, aplica lógica de alerta e disponibiliza uma API REST para visualização e análise.
 
 ------------------------------------------------------------
 🔧 COMPONENTES DO SISTEMA
