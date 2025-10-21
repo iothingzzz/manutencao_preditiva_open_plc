@@ -50,14 +50,17 @@ manutencao-preditiva-backend/
 🪜 PROGRAMA LADDER (OPENPLC)
 ------------------------------------------------------------
 
-Objetivo: Acionar alarme se temperatura > 30 °C
-
-Registradores:
-- %IW0 → Temperatura (ex: 305 = 30.5 °C)
-- %QX0.0 → Saída digital para alarme
+%IW0 → tempCPU (ex: 305 = 30.5 °C)  
+%MW0 → tempLimit (ex: 300 = 30.0 °C)  
+%QX0.0 → cooler  
+%QX0.1 → alarme  
+%T0 → Temporizador TP (T#10s)
 
 Lógica Ladder:
-|----[ %IW0 > 300 ]----( %QX0.0 )----|
+
+|----[ %IW0 > %MW0 ]----( %QX0.0 )----|  // Ativa o cooler se tempCPU > tempLimit  
+|----[ %IW0 > %MW0 ]----[ TP T#10s ]----( %QX0.1 )----|  // Ativa alarme após 10s de temperatura crítica
+
 
 ------------------------------------------------------------
 📡 COMUNICAÇÃO MODBUS TCP
