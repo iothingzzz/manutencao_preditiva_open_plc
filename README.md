@@ -11,7 +11,7 @@ Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: d
 
 1. HARDWARE
 - ESP32 Dev Kit
-- Sensor LM35 (temperatura e umidade)
+- Sensor LM35 
 - Conexão Wi-Fi
 
 2. SOFTWARE
