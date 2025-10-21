@@ -11,7 +11,7 @@ Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: d
 
 1. HARDWARE
 - ESP32 Dev Kit
-- Sensor DHT11 (temperatura e umidade)
+- Sensor LM35 (temperatura e umidade)
 - Conexão Wi-Fi
 
 2. SOFTWARE
@@ -50,8 +50,8 @@ manutencao-preditiva-backend/
 🪜 PROGRAMA LADDER (OPENPLC)
 ------------------------------------------------------------
 
-%IW0 → tempCPU (ex: 305 = 30.5 °C)  
-%MW0 → tempLimit (ex: 300 = 30.0 °C)  
+%IW0 → tempCPU (ex: 305 = 25 °C)  
+%MW0 → tempLimit (ex: 300 = 24.0 °C)  
 %QX0.0 → cooler  
 %QX0.1 → alarme  
 %T0 → Temporizador TP (T#10s)
@@ -74,7 +74,7 @@ Lógica Ladder:
 🧠 LÓGICA DE ALERTA
 ------------------------------------------------------------
 
-- Se temperatura > limite (ex: 30 °C), gerar alerta
+- Se temperatura > limite (ex: 25 °C), gerar alerta
 - Salvar leitura e alerta no MongoDB
 - Expor via API REST para frontend ou sistemas externos
 
@@ -82,11 +82,11 @@ Lógica Ladder:
 🔐 VARIÁVEIS DE AMBIENTE (.env)
 ------------------------------------------------------------
 
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/manutencao
-MODBUS_HOST=192.168.0.100
-MODBUS_PORT=502
-TEMP_LIMIT=30
+PORT=xxxx
+MONGO_URI=mongodb://localhost:xxxxx/manutencao
+MODBUS_HOST=xxx.xxx.x.xxx
+MODBUS_PORT=xxx
+TEMP_LIMIT=xx
 
 ------------------------------------------------------------
 📊 ENDPOINTS DA API
