@@ -2,11 +2,11 @@
 MANUTENÇÃO PREDITIVA COM ESP32 + OPENPLC + MODBUS TCP + MERN
 ============================================================
 
-📌 OBJETIVO
+ OBJETIVO
 Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: data centers), monitorando temperatura via sensor LM35 conectado ao ESP32 com OpenPLC. O backend Node.js coleta dados via Modbus TCP, aplica lógica de alerta e disponibiliza uma API REST para visualização e análise.
 
 ------------------------------------------------------------
-🔧 COMPONENTES DO SISTEMA
+ COMPONENTES DO SISTEMA
 ------------------------------------------------------------
 
 1. HARDWARE
@@ -22,7 +22,7 @@ Desenvolver um sistema de manutenção preditiva para ambientes críticos (ex: d
 - Protocolo Modbus TCP
 
 ------------------------------------------------------------
-🧱 ARQUITETURA DE PASTAS DO BACKEND
+ ARQUITETURA DE PASTAS DO BACKEND
 ------------------------------------------------------------
 
 manutencao-preditiva-backend/
@@ -47,7 +47,7 @@ manutencao-preditiva-backend/
 │   └── logger.js           # Logs customizados
 
 ------------------------------------------------------------
-🪜 PROGRAMA LADDER (OPENPLC)
+ PROGRAMA LADDER (OPENPLC)
 ------------------------------------------------------------
 
 %IW0 → tempCPU (ex: 305 = 25 °C)  
@@ -63,7 +63,7 @@ Lógica Ladder:
 
 
 ------------------------------------------------------------
-📡 COMUNICAÇÃO MODBUS TCP
+ COMUNICAÇÃO MODBUS TCP
 ------------------------------------------------------------
 
 - ESP32 atua como escravo Modbus TCP
@@ -71,7 +71,7 @@ Lógica Ladder:
 - Intervalo de leitura configurável (ex: a cada 10 segundos)
 
 ------------------------------------------------------------
-🧠 LÓGICA DE ALERTA
+ LÓGICA DE ALERTA
 ------------------------------------------------------------
 
 - Se temperatura > limite (ex: 25 °C), gerar alerta
@@ -79,7 +79,7 @@ Lógica Ladder:
 - Expor via API REST para frontend ou sistemas externos
 
 ------------------------------------------------------------
-🔐 VARIÁVEIS DE AMBIENTE (.env)
+ VARIÁVEIS DE AMBIENTE (.env)
 ------------------------------------------------------------
 
 PORT=xxxx
@@ -89,7 +89,7 @@ MODBUS_PORT=xxx
 TEMP_LIMIT=xx
 
 ------------------------------------------------------------
-📊 ENDPOINTS DA API
+ ENDPOINTS DA API
 ------------------------------------------------------------
 
 GET /api/sensors/latest       → Última leitura
@@ -98,7 +98,7 @@ POST /api/config              → Atualizar limites
 GET /api/status               → Estado atual do sistema
 
 ------------------------------------------------------------
-📌 APLICAÇÕES REAIS
+ APLICAÇÕES REAIS
 ------------------------------------------------------------
 
 - Monitoramento ambiental em data centers
